@@ -1,0 +1,35 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+# Himmelblau's function
+def HimmelblauFunction(x, y):
+    return (x ** 2 + y - 11) ** 2 + (x + y ** 2 - 7) ** 2
+
+
+# Divide x and y into one-dimensional areas
+xArray = np.arange(-5, 5, 0.25)
+yArray = np.arange(-5, 5, 0.25)
+# Create two-dimensional mesh
+X, Y = np.meshgrid(xArray, yArray)
+# Calc Height
+Z = HimmelblauFunction(X, Y)
+
+# Create Axes3D object
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+
+# Draw graph
+ax.plot_surface(X, Y, Z)
+# ax.plot_wireframe(X, Y, Z)
+# ax.contour(X, Y, Z, 50)
+
+# Draw contour on the bottom
+ax.contour(X, Y, Z, offset=-1)
+
+# Set axes label
+ax.set_xlabel("x", size=14)
+ax.set_ylabel("y", size=14)
+ax.set_zlabel("z", size=14)
+
+plt.show()
